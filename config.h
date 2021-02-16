@@ -257,21 +257,19 @@ static Shortcut shortcuts[] = {
 	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 	{ MODKEY,               XK_Page_Up,     kscrollup,      {.i = -1} },
 	{ MODKEY,               XK_Page_Down,   kscrolldown,    {.i = -1} },
-	{ MODKEY,               XK_k,           kscrollup,      {.i =  1} },
-	{ MODKEY,               XK_j,           kscrolldown,    {.i =  1} },
 	{ MODKEY,               XK_Up,          kscrollup,      {.i =  1} },
 	{ MODKEY,               XK_Down,        kscrolldown,    {.i =  1} },
-	{ MODKEY,               XK_u,           kscrollup,      {.i = -1} },
-	{ MODKEY,               XK_d,           kscrolldown,    {.i = -1} },
+	{ TERMMOD,               XK_U,           kscrollup,      {.i = -1} },
+	{ TERMMOD,               XK_D,           kscrolldown,    {.i = -1} },
+	{ TERMMOD,               XK_K,           kscrollup,      {.i = 1} },
+	{ TERMMOD,               XK_J,           kscrolldown,    {.i = 1} },
 	{ MODKEY,		XK_s,		changealpha,	{.f = -0.05} },
 	{ MODKEY,		XK_a,		changealpha,	{.f = +0.05} },
 	{ TERMMOD,              XK_Up,          zoom,           {.f = +1} },
 	{ TERMMOD,              XK_Down,        zoom,           {.f = -1} },
-	{ TERMMOD,              XK_K,           zoom,           {.f = +1} },
-	{ TERMMOD,              XK_J,           zoom,           {.f = -1} },
-	{ TERMMOD,              XK_U,           zoom,           {.f = +2} },
-	{ TERMMOD,              XK_D,           zoom,           {.f = -2} },
-	{ MODKEY,               XK_l,           externalpipe,   {.v = openurlcmd } },
+	{ ControlMask|ShiftMask,              XK_K,           zoom,           {.f = +1} },
+	{ ControlMask|ShiftMask,              XK_J,           zoom,           {.f = -1} },
+	{ MODKEY,               XK_f,           externalpipe,   {.v = openurlcmd } },
 	{ MODKEY,               XK_y,           externalpipe,   {.v = copyurlcmd } },
 	{ MODKEY,               XK_o,           externalpipe,   {.v = copyoutput } },
 };
@@ -279,7 +277,7 @@ static Shortcut shortcuts[] = {
 /*
  * Special keys (change & recompile st.info accordingly)
  *
- * Mask value:
+* Mask value:
  * * Use XK_ANY_MOD to match the key no matter modifiers state
  * * Use XK_NO_MOD to match the key alone (no modifiers)
  * appkey value:
@@ -305,7 +303,9 @@ static Shortcut shortcuts[] = {
  * If you want keys other than the X11 function keys (0xFD00 - 0xFFFF)
  * to be mapped below, add them to this array.
  */
-static KeySym mappedkeys[] = { -1 };
+static KeySym mappedkeys[] = { 
+  XK_k,XK_j,XK_h,XK_l
+};
 
 /*
  * State bits to ignore when matching key or button events.  By default,
@@ -326,6 +326,14 @@ static uint forceselmod = ShiftMask;
  */
 static Key key[] = {
 	/* keysym           mask            string      appkey appcursor */
+	{ XK_k,            Mod1Mask,     "\033[A",        0,   -1},
+	{ XK_k,            Mod1Mask,     "\033OA",        0,   +1},
+	{ XK_j,            Mod1Mask,     "\033[B",        0,   -1},
+	{ XK_j,            Mod1Mask,     "\033OB",        0,   +1},
+	{ XK_h,            Mod1Mask,     "\033[D",        0,   -1},
+	{ XK_h,            Mod1Mask,     "\033OD",        0,   +1},
+	{ XK_l,            Mod1Mask,     "\033[C",        0,   -1},
+	{ XK_l,            Mod1Mask,     "\033OC",        0,   +1},
 	{ XK_KP_Home,       ShiftMask,      "\033[2J",       0,   -1},
 	{ XK_KP_Home,       ShiftMask,      "\033[1;2H",     0,   +1},
 	{ XK_KP_Home,       XK_ANY_MOD,     "\033[H",        0,   -1},
@@ -381,7 +389,7 @@ static Key key[] = {
 	{ XK_KP_7,          XK_ANY_MOD,     "\033Ow",       +2,    0},
 	{ XK_KP_8,          XK_ANY_MOD,     "\033Ox",       +2,    0},
 	{ XK_KP_9,          XK_ANY_MOD,     "\033Oy",       +2,    0},
-	{ XK_Up,            ShiftMask,      "\033[1;2A",     0,    0},
+	{ XK_Up,            ShiftMask,      "\033[A",     0,    0},
 	{ XK_Up,            Mod1Mask,       "\033[1;3A",     0,    0},
 	{ XK_Up,         ShiftMask|Mod1Mask,"\033[1;4A",     0,    0},
 	{ XK_Up,            ControlMask,    "\033[1;5A",     0,    0},

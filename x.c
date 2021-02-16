@@ -1884,7 +1884,7 @@ kmap(KeySym k, uint state)
 		if (mappedkeys[i] == k)
 			break;
 	}
-	if (i == LEN(mappedkeys)) {
+	if (i == LEN(mappedkeys)) {//TODO: make a better solve
 		if ((k & 0xFFFF) < 0xFD00)
 			return NULL;
 	}
